@@ -52,7 +52,7 @@ where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be
 %\end{equation}
 % NOTE: Using SI units instead of Gauss
 \begin{equation}\label{eq:max1}
-	\mathbf{e}\cdot\nabla S = -\frac{1}{j\omega}\left( \mathbf{e}\cdot\nabla\log{\epsilon} + \nabla\cdot\mathbf{e}-\rho/\epsilon \right)
+	\mathbf{e}\cdot\nabla S = -\frac{1}{j\omega}\left( \mathbf{e}\cdot\nabla\log{\epsilon} + \nabla\cdot\mathbf{e}-e^{-j\omega S(x)}\rho/\epsilon \right)
 \end{equation}
 \begin{equation}\label{eq:max2}
 	\mathbf{h}\cdot\nabla S = -\frac{1}{j\omega}\left( \mathbf{h}\cdot\nabla\log{\mu} + \nabla\cdot\mathbf{h}\right)
@@ -61,9 +61,32 @@ where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be
 	\nabla S\times\mathbf{e} - \mu\mathbf{h} = -\frac{1}{j\omega}\nabla\times\mathbf{e}
 \end{equation}
 \begin{equation}\label{eq:max4}
-	\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = -\frac{1}{j\omega}\left( \nabla\times\mathbf{h} - \mathbf{J} \right).
+	\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = -\frac{1}{j\omega}\left( \nabla\times\mathbf{h} - \mathbf{J}e^{-j\omega S(x)} \right).
 \end{equation}
 So far this closely follows Wolf and Born, except using SI units instead of Gauss, and retaining charges and currents.
+
+
+\section{First Order System}
+
+Leaving the system of equations as is, we have two systems
+\begin{equation}
+	\delta^0:
+	\begin{cases}
+		\mathbf{e}\cdot\nabla S = 0 \\
+		\mathbf{h}\cdot\nabla S = 0 \\
+		\nabla S\times\mathbf{e} - \mu\mathbf{h} = 0 \\
+		\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = 0
+	\end{cases}
+\end{equation}
+\begin{equation}
+	\delta^1:
+	\begin{cases}
+		\nabla\cdot\epsilon\mathbf{e} = \rho' \\
+		\nabla\cdot\mu\mathbf{h} = 0 \\
+		\nabla\times\mathbf{e} = 0 \\
+		\nabla\times\mathbf{h} = \mathbf{J}'
+	\end{cases}
+\end{equation}
 
 \section{Scale Splitting}\label{sec:scaleSplit}
 
