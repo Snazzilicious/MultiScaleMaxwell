@@ -37,7 +37,7 @@ We assume linearly polarizable media,
 \begin{equation}
 	\mathbf{H} = \frac{1}{\mu}\mathbf{B},
 \end{equation}
-where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be time-harmonic and so replace time derivative operators with $-j\omega$. We furthermore assume $\mathbf{E}(x) = \mathbf{e}(x)e^{j\omega S(x)}$ and $\mathbf{H}(x) = \mathbf{h}(x)e^{j\omega S(x)}$. The resulting equations are
+where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be time-harmonic (e.g. $\mathbf{E}(t,x)=\mathbf{E}(x)e^{-j\omega t}$) and so replace time derivative operators with $-j\omega$. We furthermore assume $\mathbf{E}(x) = \mathbf{e}(x)e^{j\omega S(x)}$ and $\mathbf{H}(x) = \mathbf{h}(x)e^{j\omega S(x)}$. The resulting equations are
 %\begin{equation}\label{eq:max1}
 %	\nabla\cdot\left(\epsilon\mathbf{E}\right) = \rho
 %\end{equation}
@@ -52,16 +52,16 @@ where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be
 %\end{equation}
 % NOTE: Using SI units instead of Gauss
 \begin{equation}\label{eq:max1}
-	\mathbf{e}\cdot\nabla S = -\frac{1}{j\omega}\left( \mathbf{e}\cdot\nabla\log{\epsilon} + \nabla\cdot\mathbf{e}-e^{-j\omega S(x)}\rho/\epsilon \right)
+	\mathbf{e}\cdot\nabla S = \frac{1}{j\omega\epsilon}\left( \rho e^{-j\omega S(x)} - \nabla\cdot\epsilon\mathbf{e} \right)
 \end{equation}
 \begin{equation}\label{eq:max2}
-	\mathbf{h}\cdot\nabla S = -\frac{1}{j\omega}\left( \mathbf{h}\cdot\nabla\log{\mu} + \nabla\cdot\mathbf{h}\right)
+	\mathbf{h}\cdot\nabla S = -\frac{1}{j\omega\mu}\nabla\cdot\mu\mathbf{h}
 \end{equation}
 \begin{equation}\label{eq:max3}
 	\nabla S\times\mathbf{e} - \mu\mathbf{h} = -\frac{1}{j\omega}\nabla\times\mathbf{e}
 \end{equation}
 \begin{equation}\label{eq:max4}
-	\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = -\frac{1}{j\omega}\left( \nabla\times\mathbf{h} - \mathbf{J}e^{-j\omega S(x)} \right).
+	\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = \frac{1}{j\omega}\left( \mathbf{J}e^{-j\omega S(x)} - \nabla\times\mathbf{h} \right).
 \end{equation}
 So far this closely follows Wolf and Born, except using SI units instead of Gauss, and retaining charges and currents.
 
@@ -70,7 +70,7 @@ So far this closely follows Wolf and Born, except using SI units instead of Gaus
 
 Leaving the system of equations as is, we have two systems
 \begin{equation}
-	\delta^0:
+	\omega^0:
 	\begin{cases}
 		\mathbf{e}\cdot\nabla S = 0 \\
 		\mathbf{h}\cdot\nabla S = 0 \\
@@ -79,289 +79,39 @@ Leaving the system of equations as is, we have two systems
 	\end{cases}
 \end{equation}
 \begin{equation}
-	\delta^1:
+	\omega^1:
 	\begin{cases}
 		\nabla\cdot\epsilon\mathbf{e} = \rho' \\
 		\nabla\cdot\mu\mathbf{h} = 0 \\
 		\nabla\times\mathbf{e} = 0 \\
-		\nabla\times\mathbf{h} = \mathbf{J}'
+		\nabla\times\mathbf{h} = \mathbf{J}',
 	\end{cases}
 \end{equation}
+where we have defined $\rho' = \rho e^{-j\omega S(x)}$ and $\mathbf{J}' = \mathbf{J}e^{-j\omega S(x)}$.
 
-\section{Scale Splitting}\label{sec:scaleSplit}
-
-We assume that $\omega$ is much larger than the characteristic length of the domain, so that when the problem is non-dimensionalized, $\omega >> 1$. Stemming from this assumption, we replace $\omega$ with $1/\delta$ for $\delta<<1$.
-\begin{equation}\label{eq:max1a}
-	\nabla\cdot\left(\epsilon\mathbf{E}\right) = \rho
-\end{equation}
-\begin{equation}\label{eq:max2a}
-	\nabla\cdot\mathbf{B} = 0
-\end{equation}
-\begin{equation}\label{eq:max3a}
-	\delta\nabla\times\mathbf{E} = -j\mathbf{B}
-\end{equation}
-\begin{equation}\label{eq:max4a}
-	\delta\nabla\times\left(\frac{1}{\mu}\mathbf{B}\right) = \delta\mathbf{J} + j\epsilon\mathbf{E}.
-\end{equation}
-
-Although we assume the domain to be large relative to $\omega$, we assume there to be object(s) in the domain closer to the scale of $\omega$. To resolve these affects, we separate the problem into two scales. The standard scale is that for which $\omega$ is large, and one for which it is smaller. This separation can be represented by introducing a new function.
-
-Suppose $\exists \mathbf{F}(y,z)$ and $\exists \mathbf{C}(y,z)$ s.t. $\mathbf{E}(x) = \mathbf{F}(x,\frac{x}{\delta})$ and $\mathbf{B}(x) = \mathbf{C}(x,\frac{x}{\delta})$. We would then have $\nabla_x = \nabla_y + \frac{1}{\delta}\nabla_z$. Plugging this into the system gives us
-\begin{equation}\label{eq:max1b}
-	\delta\nabla_y\cdot\left(\epsilon\mathbf{F}\right) + \nabla_z\cdot\left(\epsilon\mathbf{F}\right) = \delta\rho
-\end{equation}
-\begin{equation}\label{eq:max2b}
-	\delta\nabla_y\cdot\mathbf{C} + \nabla_z\cdot\mathbf{C} = 0
-\end{equation}
-\begin{equation}\label{eq:max3b}
-	\delta\nabla_y\times\mathbf{F} + \nabla_z\times\mathbf{F} = -j\mathbf{C}
-\end{equation}
-\begin{equation}\label{eq:max4b}
-	\delta\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}\right) + \nabla_z\times\left(\frac{1}{\mu}\mathbf{C}\right) = \delta\mathbf{J} + j\epsilon\mathbf{F}.
-\end{equation}
-Assuming that $\epsilon$ and $\mu$ are functions of $y$ only, we have
-\begin{equation}\label{eq:max1c}
-	\delta\nabla_y\cdot\left(\epsilon\mathbf{F}\right) + \epsilon\nabla_z\cdot\mathbf{F} = \delta\rho
-\end{equation}
-\begin{equation}\label{eq:max2c}
-	\delta\nabla_y\cdot\mathbf{C} + \nabla_z\cdot\mathbf{C} = 0
-\end{equation}
-\begin{equation}\label{eq:max3c}
-	\delta\nabla_y\times\mathbf{F} + \nabla_z\times\mathbf{F} = -j\mathbf{C}
-\end{equation}
-\begin{equation}\label{eq:max4c}
-	\delta\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}\right) + \frac{1}{\mu}\nabla_z\times\mathbf{C} = \delta\mathbf{J} + j\epsilon\mathbf{F}.
-\end{equation}
-
-
-
-
-The solution is assumed to be of the form $\mathbf{F}_0 + \delta \mathbf{F}_1 + \delta^2\mathbf{F}_2 + ...$, which can be plugged into the equation to produce the system
+To solve the first system, we first solve the third equation for $\mathbf{h}$, then plug that into the fourth equation. This gives
 \begin{equation}
-	\delta^0:
-	\begin{cases}
-		\nabla_z\cdot\mathbf{F}_0 = 0 \\
-		\nabla_z\cdot\mathbf{C}_0 = 0 \\
-		\nabla_z\times\mathbf{F}_0 = -j\mathbf{C}_0 \\
-		\nabla_z\times\mathbf{C}_0 = j\mu\epsilon\mathbf{F}_0
-	\end{cases}
+	\frac{1}{\mu}\left[ \left(\mathbf{e}\cdot\nabla S\right)\nabla S - \norm{\nabla S}^2\mathbf{e}\right] + \epsilon\mathbf{e} = 0.
 \end{equation}
+Invoking the first equation results in
 \begin{equation}
-	\delta^1:
-	\begin{cases}
-		\nabla_z\cdot\mathbf{F}_1 = \frac{\rho}{\epsilon} - \frac{1}{\epsilon}\nabla_y\cdot\left(\epsilon\mathbf{F}_0\right)\\
-		\nabla_z\cdot\mathbf{C}_1 = -\nabla_y\cdot\mathbf{C}_0 \\
-		\nabla_z\times\mathbf{F}_1 = -j\mathbf{C}_1 - \nabla_y\times\mathbf{F}_0\\
-		\nabla_z\times\mathbf{C}_1 = \mu\mathbf{J} + j\mu\epsilon\mathbf{F}_1 - \mu\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}_0\right)
-	\end{cases}
+	\left(\mu\epsilon - \norm{\nabla S}^2\right)\mathbf{e} = 0,
 \end{equation}
+or
 \begin{equation}
-	\delta^2:
-	\begin{cases}
-		\nabla_z\cdot\mathbf{F}_2 = -\frac{1}{\epsilon}\nabla_y\cdot\left(\epsilon\mathbf{F}_1\right)\\
-		\nabla_z\cdot\mathbf{C}_2 = -\nabla_y\cdot\mathbf{C}_1 \\
-		\nabla_z\times\mathbf{F}_2 = -j\mathbf{C}_2 - \nabla_y\times\mathbf{F}_1\\
-		\nabla_z\times\mathbf{C}_2 = j\mu\epsilon\mathbf{F}_2 - \mu\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}_1\right)
-	\end{cases}
+	\norm{\nabla S}^2 = \mu\epsilon.
 \end{equation}
+This is the eikonal equation.
+
+Inspecting the second system, we see that it is the plain electro/magneto-statics equations, that is to say that the wave part of the solution has been removed. Hopefully this is easier to solve than the EFIE/MFIE problem.
 
 
 
-\section{Solution}\label{sec:sol}
+\section{Second Order System}
 
-The gist is that the first equation yields a small scale plane wave with a long scale amplitude, $\mathbf{f}_0(y)e^{j\sqrt{\mu\epsilon}\left(\mathbf{v}\cdot z\right)}$. The amplitude, $\mathbf{f}_0(y)$, is solved for by setting
-\begin{equation*}
-	2\nabla_y\cdot\nabla_z\mathbf{F}_0 + \nabla_z\left( \mathbf{F}_0\cdot\nabla_y\log{\epsilon} \right) + \nabla_y\log{\mu}\times\nabla_z\times\mathbf{F}_0 = 0
-\end{equation*}
-from the second equation. This is term-by-term and step-by-step analogous to Wolf and Born's derivation of physical optics in Principles of Optics section 3.1.3.
-
-The leftovers from the second equation are the EFIE problem which has solution along the lines of
-\begin{equation*}
-	\int\mathbf{f}_1(y,z_0) \frac{ e^{j\sqrt{\mu\epsilon}\norm{z-z_0}} }{ \norm{z-z_0} } dz_0,
-\end{equation*}
-Where $\mathbf{f}_1(y*,z_0) = \left( j\mu\mathbf{J} + \frac{1}{\epsilon}\nabla_z\rho \right)$ probably. We then solve a similar ODE for $\mathbf{f}_1(y,z_0)$ as we did for $\mathbf{f}_0(y)$ and neglect any higher order terms.
-
-The final soution is then something like
-%\begin{equation*}
-%	\mathbf{f}_0(x)e^{j\sqrt{\mu\epsilon}\omega\left(\mathbf{v}\cdot{x}\right)} + \frac{1}{\omega}\int\mathbf{f}_1(x,x_0) \frac{ e^{j\sqrt{\mu\epsilon}\omega\norm{x-x_0}} }{ \omega\norm{x-x_0} } \omega dx_0.
-%\end{equation*}
-\begin{equation*}
-	\mathbf{f}_0(x)e^{j\sqrt{\mu\epsilon}\omega\left(\mathbf{v}\cdot{x}\right)} + \int\mathbf{f}_1(x,x_0) \frac{ e^{j\sqrt{\mu\epsilon}\omega\norm{x-x_0}} }{ \omega\norm{x-x_0} } dx_0.
-\end{equation*}
+An alternative to the above solution procedure is to solve the system as far as possible before splitting it by powers of $\omega$. Solving \eqref{eq:max3} for $\mathbf{h}$ and plugging the result into \eqref{eq:max4} gives
 
 
-
-\subsection{Order 0}
-
-The first system yields a wave equation by taking the curl w.r.t. $z$ of the third equation and plugging the fourth equation into it. This equation is
-\begin{equation*}
-	\nabla_z\times\nabla_z\times\mathbf{F}_0 = \mu\epsilon\mathbf{F}_0,
-\end{equation*}
-\begin{equation}
-	-\nabla_z^2\mathbf{F}_0 + \nabla_z\left(\nabla_z\cdot\mathbf{F}_0\right) = \mu\epsilon\mathbf{F}_0.
-\end{equation}
-Invoking the first equation in the system, this is now
-\begin{equation}
-	\nabla_z^2\mathbf{F}_0 + \mu\epsilon\mathbf{F}_0 = 0.
-\end{equation}
-This is solved by
-\begin{equation}
-	\mathbf{F}_0(y,z) = \mathbf{f}_0(y)e^{j\left(\mathbf{v}(y)\cdot z\right)},
-\end{equation}
-where $\norm{\mathbf{v}(y)}^2=\mu\epsilon$. We note this satisfies the eikonal equation,
-\begin{equation}
-	\norm{\nabla_z \left(\mathbf{v}\cdot z\right) }^2 = \mu\epsilon = n^2.
-\end{equation}
-
-To ensure that the first equation is satisfied, we plug the solution in and get
-\begin{equation}
-	e^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{f}_0(y)\cdot\mathbf{v}(y) = 0
-\end{equation}
-which implies
-\begin{equation}
-	\mathbf{f}_0(y)\cdot\mathbf{v}(y) = 0.
-\end{equation}
-
-The third equation gives us
-\begin{equation}
-	\mathbf{C}_0 = -e^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{v}(y)\times\mathbf{f}_0(y),
-\end{equation}
-which automatically satisfies the second equation.
-
-
-
-\subsection{Order 1}
-
-The second system can also produce a wave equation by taking the curl w.r.t. $z$ of the third equation and plugging the fourth equation into it. This equation is
-\begin{equation}
-	-\nabla_z^2\mathbf{F}_1 + \nabla_z\left(\nabla_z\cdot\mathbf{F}_1\right) = -j\mu\mathbf{J} + \mu\epsilon\mathbf{F}_1 + j\mu\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}_0\right) - \nabla_z\times\nabla_y\times\mathbf{F}_0.
-\end{equation}
-Plugging in the first equation in the system gives
-\begin{equation}
-	\nabla_z^2\mathbf{F}_1 + \mu\epsilon\mathbf{F}_1 = j\mu\mathbf{J} + \frac{1}{\epsilon}\nabla_z\rho - \frac{1}{\epsilon}\nabla_z\left(\nabla_y\cdot\left(\epsilon\mathbf{F}_0\right)\right) - j\mu\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}_0\right) + \nabla_z\times\nabla_y\times\mathbf{F}_0.
-\end{equation}
-We plug the Order 0 solution into the last 3 terms which yields the following.
-
-\subsection{Term 1}
-
-\begin{equation}
-	-\frac{1}{\epsilon}\nabla_z\left(\nabla_y\cdot\left(\epsilon\mathbf{F}_0\right)\right) = -\frac{1}{\epsilon}\nabla_z\left(\nabla_y\cdot\left( \epsilon\mathbf{f}_0(y)e^{j\left(\mathbf{v}(y)\cdot z\right)} \right)\right)
-\end{equation}
-\begin{equation}
-	= -\frac{1}{\epsilon}\nabla_z\left( e^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{f}_0(y)\cdot\nabla_y\epsilon + \epsilon je^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \epsilon e^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y\cdot\mathbf{f}_0(y) \right)
-\end{equation}
-\begin{equation}
-	= -\nabla_z e^{j\left(\mathbf{v}(y)\cdot z\right)}\left( \mathbf{f}_0(y)\cdot\nabla_y\log{\epsilon} + j\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \nabla_y\cdot\mathbf{f}_0(y) \right)
-\end{equation}
-\begin{equation}
-	= -\left[ je^{j\left(\mathbf{v}(y)\cdot z\right)}\left( \mathbf{f}_0(y)\cdot\nabla_y\log{\epsilon} + j\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \nabla_y\cdot\mathbf{f}_0(y) \right)\mathbf{v}(y) + je^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) \right]
-\end{equation}
-\begin{equation}
-	= -je^{j\left(\mathbf{v}(y)\cdot z\right)}\left[ \left( \mathbf{f}_0(y)\cdot\nabla_y\log{\epsilon} + j\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \nabla_y\cdot\mathbf{f}_0(y) \right)\mathbf{v}(y) + \mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) \right]
-\end{equation}
-
-
-\subsection{Term 2}
-
-\begin{equation}
-	-j\mu\nabla_y\times\left(\frac{1}{\mu}\mathbf{C}_0\right) = j\mu\nabla_y\times\left( \frac{1}{\mu}e^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{v}(y)\times\mathbf{f}_0(y) \right)
-\end{equation}
-\begin{equation}
-	= j\mu\left[ \frac{1}{\mu}e^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y\times(\mathbf{v}(y)\times\mathbf{f}_0(y)) + \left( e^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y\frac{1}{\mu} + \frac{1}{\mu}je^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y(\mathbf{v}(y)\cdot z) \right)\times(\mathbf{v}(y)\times\mathbf{f}_0(y)) \right]
-\end{equation}
-\begin{equation}
-	= je^{j\left(\mathbf{v}(y)\cdot z\right)}\left[ \nabla_y\times(\mathbf{v}(y)\times\mathbf{f}_0(y)) + \left( -\nabla_y\log{\mu} + j\nabla_y(\mathbf{v}(y)\cdot z) \right)\times(\mathbf{v}(y)\times\mathbf{f}_0(y)) \right]
-\end{equation}
-\begin{multline}
-	= je^{j\left(\mathbf{v}(y)\cdot z\right)} \Big[ \mathbf{v}(y)\nabla_y\cdot\mathbf{f}_0(y) - \mathbf{f}_0(y)\nabla_y\cdot\mathbf{v}(y) + \mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) - \mathbf{v}(y)\cdot\nabla_y\mathbf{f}_0(y) \\ + \left( -\mathbf{f}_0(y)\cdot\nabla_y\log{\mu} + j\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) \right)\mathbf{v}(y) - \left( -\mathbf{v}(y)\cdot\nabla_y\log{\mu} + j\mathbf{v}(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) \right)\mathbf{f}_0(y) \Big]
-\end{multline}
-
-
-\subsection{Term 3}
-
-\begin{equation}
-	\nabla_z\times\nabla_y\times\mathbf{F}_0 = \nabla_z\times\nabla_y\times\mathbf{f}_0(y)e^{j\left(\mathbf{v}(y)\cdot z\right)}
-\end{equation}
-\begin{equation}
-	= \nabla_z\times\left[ \nabla_y e^{j\left(\mathbf{v}(y)\cdot z\right)}\times\mathbf{f}_0(y) + e^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y\times\mathbf{f}_0(y) \right]
-\end{equation}
-\begin{equation}
-	= \nabla_z\times\left[ je^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y(\mathbf{v}(y)\cdot z)\times\mathbf{f}_0(y) + e^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_y\times\mathbf{f}_0(y) \right]
-\end{equation}
-\begin{equation}
-	= j^2e^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{v}(y)\times\nabla_y(\mathbf{v}(y)\cdot z)\times\mathbf{f}_0(y) + je^{j\left(\mathbf{v}(y)\cdot z\right)}\nabla_z\times\nabla_y(\mathbf{v}(y)\cdot z)\times\mathbf{f}_0(y) + je^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{v}(y)\times\nabla_y\times\mathbf{f}_0(y)
-\end{equation}
-\begin{multline}
-	= j^2e^{j\left(\mathbf{v}(y)\cdot z\right)}\left[ (\mathbf{v}(y)\cdot\mathbf{f}_0(y))\nabla_y(\mathbf{v}(y)\cdot z) - (\mathbf{v}(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z))\mathbf{f}_0(y) \right] \\ + je^{j\left(\mathbf{v}(y)\cdot z\right)}\left[ -\mathbf{f}_0(y)\nabla_z\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \mathbf{f}_0(y)\cdot\nabla_z\nabla_y(\mathbf{v}(y)\cdot z) \right] \\ + je^{j\left(\mathbf{v}(y)\cdot z\right)}\mathbf{v}(y)\times\nabla_y\times\mathbf{f}_0(y)
-\end{multline}
-\begin{multline}
-	= je^{j\left(\mathbf{v}(y)\cdot z\right)} \Big[ -j(\mathbf{v}(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z))\mathbf{f}_0(y) \\ -\mathbf{f}_0(y)\nabla_z\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \mathbf{f}_0(y)\cdot\nabla_z\nabla_y(\mathbf{v}(y)\cdot z) \\ + \mathbf{v}(y)\times\nabla_y\times\mathbf{f}_0(y) \Big]
-\end{multline}
-\begin{multline}
-	= je^{j\left(\mathbf{v}(y)\cdot z\right)} \Big[ -j(\mathbf{v}(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z))\mathbf{f}_0(y) -\mathbf{f}_0(y)\nabla_y\cdot\mathbf{v}(y) + \mathbf{f}_{0,l}(y)\frac{\partial\mathbf{v}_l(y)}{\partial y_k} \\ - \mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) - \mathbf{v}(y)\cdot\nabla_y\mathbf{f}_0(y) - \mathbf{f}_0(y)\times\nabla_y\times\mathbf{v}(y) \Big]
-\end{multline}
-
-
-\subsection{Putting Together}
-
-The combined terms are
-\begin{multline}
-	je^{j\left(\mathbf{v}(y)\cdot z\right)}\Big[ \\
-		-\left( \mathbf{f}_0(y)\cdot\nabla_y\log{\epsilon} + j\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) + \nabla_y\cdot\mathbf{f}_0(y) \right)\mathbf{v}(y) - \mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) \\
-		+ \mathbf{v}(y)\nabla_y\cdot\mathbf{f}_0(y) - \mathbf{f}_0(y)\nabla_y\cdot\mathbf{v}(y) + \mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) - \mathbf{v}(y)\cdot\nabla_y\mathbf{f}_0(y) \\ + \left( -\mathbf{f}_0(y)\cdot\nabla_y\log{\mu} + j\mathbf{f}_0(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) \right)\mathbf{v}(y) - \left( -\mathbf{v}(y)\cdot\nabla_y\log{\mu} + j\mathbf{v}(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z) \right)\mathbf{f}_0(y) \\
-		-j(\mathbf{v}(y)\cdot\nabla_y(\mathbf{v}(y)\cdot z))\mathbf{f}_0(y) -\mathbf{f}_0(y)\nabla_y\cdot\mathbf{v}(y) + \mathbf{f}_{0,l}(y)\frac{\partial\mathbf{v}_l(y)}{\partial y_k} \\ - \mathbf{f}_0(y)\cdot\nabla_y\mathbf{v}(y) - \mathbf{v}(y)\cdot\nabla_y\mathbf{f}_0(y) - \mathbf{f}_0(y)\times\nabla_y\times\mathbf{v}(y)
-	\\ \Big]
-\end{multline}
-
-
-\subsection{Secular terms}
-
-To prevent secular terms, we require that
-\begin{equation}
-	\mathbf{v}\cdot\nabla_y\mathbf{f}_0(y)  + \left[ \left(\frac{1}{\sqrt{\mu\epsilon}}+j\left(\mathbf{v}\cdot z\right)\right)\left(\mathbf{v}\cdot\nabla_y\sqrt{\mu\epsilon}\right) - \left(\mathbf{v}\cdot\nabla_y\log{\sqrt{\mu}}\right)\right]\mathbf{f}_0(y)  + \left( \mathbf{f}_0(y)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{equation}
-Introducing $\mathbf{g}_0(r)$ with $\frac{dy_i}{dr}=v_i$, such that $\mathbf{g}_0(v\cdot y) = \mathbf{f}_0(y)$, this equation is
-\begin{equation}
-	\frac{d}{dr}\mathbf{g}_0(r)  + \left[ \left(\frac{1}{\sqrt{\mu\epsilon}}+j\left(\mathbf{v}\cdot z\right)\right)\left(\frac{d}{dr}\sqrt{\mu\epsilon}\right) - \left(\frac{d}{dr}\log{\sqrt{\mu}}\right) \right]\mathbf{g}_0(r)  + \left( \mathbf{g}_0(r)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{equation}
-It is convenient to solve for the magnitude and direction of $\mathbf{g}_0(r)$ separately. To solve for the magnitude, we scalar multiply with $\mathbf{g}^*_0(r)$, then add the complex conjugate of the result to itself. This produces
-\begin{equation}
-	\frac{d}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) + 2\left[ \frac{1}{\sqrt{\mu\epsilon}}\frac{d}{dr}\sqrt{\mu\epsilon} - \left(\frac{d}{dr}\log{\sqrt{\mu}}\right) \right]\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) = 0.
-\end{equation}
-\begin{equation}
-	\frac{d}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) + \frac{1}{\epsilon}\frac{d\epsilon}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) = 0.
-\end{equation}
-\begin{equation}
-	\norm{\mathbf{g}_0(r)}^2 = \frac{K_0}{ \epsilon(r) }.
-\end{equation}
-
-To solve for the direction, we plug in $\mathbf{g}_0(r) = \sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\mathbf{u}_0(r)$, where $\mathbf{u}_0(r)$ is a unit vector.
-\begin{multline}
-	\mathbf{u}_0(r)\frac{d}{dr}\sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)} + \sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\frac{d}{dr}\mathbf{u}_0(r) \\ + \left[ \left(\frac{1}{\sqrt{\mu\epsilon}}+j\left(\mathbf{v}\cdot z\right)\right)\left(\frac{d}{dr}\sqrt{\mu\epsilon}\right) - \left(\frac{d}{dr}\log{\sqrt{\mu}}\right) \right]\sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\mathbf{u}_0(r) \\ + \sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\left( \mathbf{u}_0(r)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{multline}
-\begin{multline}
-	\mathbf{u}_0(r)\frac{1}{2\sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}}\frac{d}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) + \sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\frac{d}{dr}\mathbf{u}_0(r) \\ + \left[ \frac{d}{dr}\log{\sqrt{\epsilon}} + j\left(\mathbf{v}\cdot z\right)\frac{d}{dr}\sqrt{\mu\epsilon} \right]\sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\mathbf{u}_0(r) \\ + \sqrt{\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)}\left( \mathbf{u}_0(r)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{multline}
-\begin{multline}
-	\mathbf{u}_0(r)\frac{d}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) + 2\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)\frac{d}{dr}\mathbf{u}_0(r) \\ + 2\left[ \frac{d}{dr}\log{\sqrt{\epsilon}} + j\left(\mathbf{v}\cdot z\right)\frac{d}{dr}\sqrt{\mu\epsilon} \right]\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)\mathbf{u}_0(r) \\ + 2\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)\left( \mathbf{u}_0(r)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{multline}
-\begin{multline}
-	\mathbf{u}_0(r)\left[ \frac{d}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) + \frac{1}{\epsilon}\frac{d\epsilon}{dr}\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r) \right] \\ + 2\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)\frac{d}{dr}\mathbf{u}_0(r) + 2\left[ j\left(\mathbf{v}\cdot z\right)\frac{d}{dr}\sqrt{\mu\epsilon} \right]\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)\mathbf{u}_0(r) \\ + 2\mathbf{g}_0(r)\cdot\mathbf{g}^*_0(r)\left( \mathbf{u}_0(r)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{multline}
-The first term is zero from before,
-\begin{equation}
-	\frac{d}{dr}\mathbf{u}_0(r) \\ + \left[ j\left(\mathbf{v}\cdot z\right)\frac{d}{dr}\sqrt{\mu\epsilon} \right]\mathbf{u}_0(r) \\ + \left( \mathbf{u}_0(r)\cdot\nabla_y\log{\sqrt{\mu\epsilon}} \right)\mathbf{v} = 0.
-\end{equation}
-
-
-
-The second equation is now
-\begin{equation}
-	\mu\epsilon\mathbf{F}_1 + \nabla_z^2\mathbf{F}_1 = \left( j\mu\mathbf{J} + \frac{1}{\epsilon}\nabla_z\rho \right),
-\end{equation}
-which is the EFIE problem.
-
-To be continued ...
 
 
 \end{document}
