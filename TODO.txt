@@ -1,0 +1,10 @@
+
+1. Solve first order system
+	a. show linearity
+2. Create second order system, and solve that
+	a. show linearity
+	b. see if this is any different from 1
+		i. probably won't have e\cdot\nabla S = 0
+3. Start with wave equation
+	a. Show linearity
+	b. see if this differs from 2
