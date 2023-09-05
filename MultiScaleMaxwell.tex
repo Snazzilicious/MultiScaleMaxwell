@@ -105,7 +105,22 @@ This is the eikonal equation.
 
 Inspecting the second system, we see that it is the plain electro/magneto-statics equations, that is to say that the wave part of the solution has been removed. Hopefully this is easier to solve than the EFIE/MFIE problem.
 
-
+The third equation implies $\mathbf{e} = \nabla\phi$ for some scalar function $\phi$. The first equation then becomes
+\begin{equation}
+	\nabla\cdot\epsilon\nabla\phi = \rho'.
+\end{equation}
+This would produce a solution for the electric field
+\begin{equation}
+	E(x) = e^{j\omega S}\nabla\phi.
+\end{equation}
+The second equation implies $\mu\mathbf{h} = \nabla\times\mathbf{A}$ for some vector function $\mathbf{A}$. The fourth equation then becomes
+\begin{equation}
+	-\nabla^2\mathbf{A} -\nabla\log{\mu}\times\nabla\times\mathbf{A} = \mu\mathbf{J}',
+\end{equation}
+where an appropriate gauge has been chosen such that $\nabla\cdot\left(\mathbf{A}+\nabla\psi\right)=0$. The solution for the magnetic field is
+\begin{equation}
+	H(x) = \frac{e^{j\omega S}}{\mu}\nabla\times\mathbf{A}.
+\end{equation}
 
 \section{Second Order System}
 

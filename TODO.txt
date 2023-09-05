@@ -1,6 +1,10 @@
 
 1. Solve first order system
 	a. show linearity
+	b. use solution to Poisson's equation
+	c. make sure have guage right
+	d. Get to final solution
+		i. use linearity to superimpose solutions for point currents and charges
 2. Create second order system, and solve that
 	a. show linearity
 	b. see if this is any different from 1
