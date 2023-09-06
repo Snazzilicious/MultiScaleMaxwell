@@ -3,9 +3,9 @@
 
 1. Solve first order system
 	a. show linearity
-	b. use solution to Poisson's equation
+	b. use solution to Poisson's equation - done
 	c. make sure have guage right - done
-	d. Get to final solution
+	d. Get to final solution - done
 		i. use linearity to superimpose solutions for point currents and charges
 	e. Figure out which direction grad S goes
 2. Create second order system, and solve that
