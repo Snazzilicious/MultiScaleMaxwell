@@ -3,11 +3,14 @@
 
 1. Solve first order system
 	a. show linearity
+		i. Single S, multiple e
+		ii. Multiple S - 1 per e
 	b. use solution to Poisson's equation - done
 	c. make sure have guage right - done
 	d. Get to final solution - done
 		i. use linearity to superimpose solutions for point currents and charges
 	e. Figure out which direction grad S goes
+	f. Show net-zero charge distribution works in far field
 2. Create second order system, and solve that
 	a. show linearity
 	b. see if this is any different from 1
