@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 
 \newcommand{\norm}[1]{||#1||}
+\newcommand{\Div}[0]{\nabla\cdot}
+\newcommand{\Curl}[0]{\nabla\times}
 
 \theoremstyle{plain}
 \newtheorem*{remark}{Remark}
@@ -19,16 +21,16 @@
 
 We begin with Maxwell's equations in matter
 \begin{equation}
-	\nabla\cdot\mathbf{D} = \rho
+	\Div\mathbf{D} = \rho
 \end{equation}
 \begin{equation}
-	\nabla\cdot\mathbf{B} = 0
+	\Div\mathbf{B} = 0
 \end{equation}
 \begin{equation}
-	\nabla\times\mathbf{E} = -\frac{d\mathbf{B}}{dt}
+	\Curl\mathbf{E} = -\frac{d\mathbf{B}}{dt}
 \end{equation}
 \begin{equation}
-	\nabla\times\mathbf{H} = \mathbf{J} + \frac{d\mathbf{D}}{dt}.
+	\Curl\mathbf{H} = \mathbf{J} + \frac{d\mathbf{D}}{dt}.
 \end{equation}
 We assume linearly polarizable media,
 \begin{equation}
@@ -39,29 +41,29 @@ We assume linearly polarizable media,
 \end{equation}
 where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be time-harmonic (e.g. $\mathbf{E}(t,x)=\mathbf{E}(x)e^{-j\omega t}$) and so replace time derivative operators with $-j\omega$. We furthermore assume $\mathbf{E}(x) = \mathbf{e}(x)e^{j\omega S(x)}$ and $\mathbf{H}(x) = \mathbf{h}(x)e^{j\omega S(x)}$. The resulting equations are
 %\begin{equation}\label{eq:max1}
-%	\nabla\cdot\left(\epsilon\mathbf{E}\right) = \rho
+%	\Div\left(\epsilon\mathbf{E}\right) = \rho
 %\end{equation}
 %\begin{equation}\label{eq:max2}
-%	\nabla\cdot\mathbf{B} = 0
+%	\Div\mathbf{B} = 0
 %\end{equation}
 %\begin{equation}\label{eq:max3}
-%	\nabla\times\mathbf{E} = -j\omega\mathbf{B}
+%	\Curl\mathbf{E} = -j\omega\mathbf{B}
 %\end{equation}
 %\begin{equation}\label{eq:max4}
-%	\nabla\times\left(\frac{1}{\mu}\mathbf{B}\right) = \mathbf{J} + j\omega\epsilon\mathbf{E}.
+%	\Curl\left(\frac{1}{\mu}\mathbf{B}\right) = \mathbf{J} + j\omega\epsilon\mathbf{E}.
 %\end{equation}
 % NOTE: Using SI units instead of Gauss
 \begin{equation}\label{eq:max1}
-	\mathbf{e}\cdot\nabla S = \frac{1}{j\omega\epsilon}\left( \rho e^{-j\omega S(x)} - \nabla\cdot\epsilon\mathbf{e} \right)
+	\mathbf{e}\cdot\nabla S = \frac{1}{j\omega\epsilon}\left( \rho e^{-j\omega S(x)} - \Div\epsilon\mathbf{e} \right)
 \end{equation}
 \begin{equation}\label{eq:max2}
-	\mathbf{h}\cdot\nabla S = -\frac{1}{j\omega\mu}\nabla\cdot\mu\mathbf{h}
+	\mathbf{h}\cdot\nabla S = -\frac{1}{j\omega\mu}\Div\mu\mathbf{h}
 \end{equation}
 \begin{equation}\label{eq:max3}
-	\nabla S\times\mathbf{e} - \mu\mathbf{h} = -\frac{1}{j\omega}\nabla\times\mathbf{e}
+	\nabla S\times\mathbf{e} - \mu\mathbf{h} = -\frac{1}{j\omega}\Curl\mathbf{e}
 \end{equation}
 \begin{equation}\label{eq:max4}
-	\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = \frac{1}{j\omega}\left( \mathbf{J}e^{-j\omega S(x)} - \nabla\times\mathbf{h} \right).
+	\nabla S\times\mathbf{h} + \epsilon\mathbf{e} = \frac{1}{j\omega}\left( \mathbf{J}e^{-j\omega S(x)} - \Curl\mathbf{h} \right).
 \end{equation}
 So far this closely follows Wolf and Born, except using SI units instead of Gauss, and retaining charges and currents.
 
@@ -81,10 +83,10 @@ Leaving the system of equations as is, we have two systems
 \begin{equation}
 	\omega^1:
 	\begin{cases}
-		\nabla\cdot\epsilon\mathbf{e} = \rho' \\
-		\nabla\cdot\mu\mathbf{h} = 0 \\
-		\nabla\times\mathbf{e} = 0 \\
-		\nabla\times\mathbf{h} = \mathbf{J}',
+		\Div\epsilon\mathbf{e} = \rho' \\
+		\Div\mu\mathbf{h} = 0 \\
+		\Curl\mathbf{e} = 0 \\
+		\Curl\mathbf{h} = \mathbf{J}',
 	\end{cases}
 \end{equation}
 where we have defined $\rho' = \rho e^{-j\omega S(x)}$ and $\mathbf{J}' = \mathbf{J}e^{-j\omega S(x)}$.
@@ -105,27 +107,39 @@ This is the eikonal equation.
 
 Inspecting the second system, we see that it is the plain electro/magneto-statics equations, that is to say that the wave part of the solution has been removed. Hopefully this is easier to solve than the EFIE/MFIE problem.
 
+We start by considering the fourth equation's implication that $\Div\mathbf{J}'=0$. This means that
+\begin{equation}
+	\Div e^{-j\omega S}\mathbf{J} = e^{-j\omega S}\Div\mathbf{J} - j\omega e^{-j\omega S}\mathbf{J}\cdot\nabla S = 0,
+\end{equation}
+or
+\begin{equation}
+	e^{-j\omega S}\Div\mathbf{J} = j\omega e^{-j\omega S}\mathbf{J}\cdot\nabla S.
+\end{equation}
+Invoking $\rho = \frac{1}{j\omega}\Div\mathbf{J}$, we have $\rho' = \mathbf{J}'\cdot\nabla S$, so the first equation is
+\begin{equation}
+	\Div\epsilon\mathbf{e} = \mathbf{J}'\cdot\nabla S
+\end{equation}
 The third equation implies $\mathbf{e} = \nabla\phi$ for some scalar function $\phi$. The first equation then becomes
 \begin{equation}
-	\nabla\cdot\epsilon\nabla\phi = \rho'.
+	\Div\epsilon\nabla\phi = \mathbf{J}'\cdot\nabla S.
 \end{equation}
 This would produce a solution for the electric field
 \begin{equation}
 	\mathbf{E}(x) = e^{j\omega S}\nabla\phi.
 \end{equation}
-The second equation implies $\mu\mathbf{h} = \nabla\times\mathbf{A}$ for some vector function $\mathbf{A}$. The fourth equation then becomes
+The second equation implies $\mu\mathbf{h} = \Curl\mathbf{A}$ for some vector function $\mathbf{A}$. The fourth equation then becomes
 \begin{equation}
-	-\nabla^2\mathbf{A} -\nabla\log{\mu}\times\nabla\times\mathbf{A} = \mu\mathbf{J}',
+	-\nabla^2\mathbf{A} -\nabla\log{\mu}\times\Curl\mathbf{A} = \mu\mathbf{J}',
 \end{equation}
-where an appropriate gauge has been chosen such that $\nabla\cdot\mathbf{A}=0$. The solution for the magnetic field is
+where an appropriate gauge has been chosen such that $\Div\mathbf{A}=0$. The solution for the magnetic field is
 \begin{equation}
-	\mathbf{H}(x) = \frac{e^{j\omega S}}{\mu}\nabla\times\mathbf{A}.
+	\mathbf{H}(x) = \frac{e^{j\omega S}}{\mu}\Curl\mathbf{A}.
 \end{equation}
 
 
-Of particular interest are solutions when $\rho = \delta(x-x_0)$ and $\mathbf{J} = \delta(x-x_0)$. We will indicate these solutions by $\phi(x,x_0)$ and $\mathbf{A}(x,x_0)$. It is convenient parameterize the phase function by the center of the delta function, $S=S(x,x_0)$, and to require that $S(x_0,x_0)=0$ so that $\rho'=\rho$ and $\mathbf{J}'=\mathbf{J}$. With all this, the solution to the general problem is
+Of particular interest are solutions when $\mathbf{J} = \delta(x-x_0)$. We will indicate these solutions by $\phi(x,x_0)$ and $\mathbf{A}(x,x_0)$. It is convenient parameterize the phase function by the center of the delta function, $S=S(x,x_0)$, and to require that $S(x_0,x_0)=0$ so that $\mathbf{J}'(x_0)=\mathbf{J}(x_0)$. With all this, the solution to the general problem is
 \begin{equation}
-	\mathbf{E}(x) = \int_{\mathbb{R}^3} e^{j\omega S(x,x_0)}\nabla_x\rho(x_0)\phi(x,x_0) dx_0
+	\mathbf{E}(x) = \int_{\mathbb{R}^3} e^{j\omega S(x,x_0)} \left( \mathbf{J}(x_0)\cdot\nabla S(x,x_0) \right)\nabla_x\phi(x,x_0) dx_0
 \end{equation}
 and
 \begin{equation}
@@ -133,6 +147,7 @@ and
 \end{equation}
 
 
+% TODO Update this
 \subsection{Homogeneous Media}
 
 For reference, we consider the case of constant permeability and permittivity. In this case we can set the phase function to
@@ -141,7 +156,7 @@ For reference, we consider the case of constant permeability and permittivity. I
 \end{equation}
 and the equations to solve are
 \begin{equation}
-	\nabla^2\phi = \frac{\rho_0}{\epsilon}\delta(x-x_0)
+	\nabla^2\phi = \sqrt{\frac{\mu}{\epsilon}}\frac{\mathbf{J}_0\cdot(x-x_0)}{\norm{x-x_0}}\delta(x-x_0)
 \end{equation}
 and
 \begin{equation}
