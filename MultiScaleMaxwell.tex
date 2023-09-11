@@ -91,6 +91,9 @@ Leaving the system of equations as is, we have two systems
 \end{equation}
 where we have defined $\rho' = \rho e^{-j\omega S(x)}$ and $\mathbf{J}' = \mathbf{J}e^{-j\omega S(x)}$.
 
+
+\subsection{Zeroth Order Solution}
+
 To solve the first system, we first solve the third equation for $\mathbf{h}$, then plug that into the fourth equation. This gives
 \begin{equation}
 	\frac{1}{\mu}\left[ \left(\mathbf{e}\cdot\nabla S\right)\nabla S - \norm{\nabla S}^2\mathbf{e}\right] + \epsilon\mathbf{e} = 0.
@@ -104,6 +107,11 @@ or
 	\norm{\nabla S}^2 = \mu\epsilon.
 \end{equation}
 This is the eikonal equation.
+
+
+
+
+\subsection{First Order Solution}
 
 Inspecting the second system, we see that it is the plain electro/magneto-statics equations, that is to say that the wave part of the solution has been removed. Hopefully this is easier to solve than the EFIE/MFIE problem.
 
