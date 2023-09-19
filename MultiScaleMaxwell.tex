@@ -39,7 +39,10 @@ We assume linearly polarizable media,
 \begin{equation}
 	\mathbf{H} = \frac{1}{\mu}\mathbf{B},
 \end{equation}
-where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be time-harmonic (e.g. $\mathbf{E}(t,x)=\mathbf{E}(x)e^{-j\omega t}$) and so replace time derivative operators with $-j\omega$. We furthermore assume $\mathbf{E}(x) = \mathbf{e}(x)e^{j\omega S(x)}$ and $\mathbf{H}(x) = \mathbf{h}(x)e^{j\omega S(x)}$. The resulting equations are
+where $\epsilon=\epsilon(x)$ and $\mu=\mu(x)$. We also assume the solution to be time-harmonic
+(e.g. $\mathbf{E}(t,x)=\mathbf{E}(x)e^{-j\omega t}$) and so replace time derivative operators with $-j\omega$.
+We furthermore assume $\mathbf{E}(x) = \mathbf{e}(x)e^{j\omega S(x)}$ and $\mathbf{H}(x) = \mathbf{h}(x)e^{j\omega S(x)}$.
+The resulting equations are
 %\begin{equation}\label{eq:max1}
 %	\Div\left(\epsilon\mathbf{E}\right) = \rho
 %\end{equation}
@@ -113,7 +116,8 @@ This is the eikonal equation.
 
 \subsection{First Order Solution}
 
-Inspecting the second system, we see that it is the plain electro/magneto-statics equations, that is to say that the wave part of the solution has been removed. Hopefully this is easier to solve than the EFIE/MFIE problem.
+Inspecting the second system, we see that it is the plain electro/magneto-statics equations,
+that is to say that the wave part of the solution has been removed. Hopefully this is easier to solve than the EFIE/MFIE problem.
 
 We start by considering the fourth equation's implication that $\Div\mathbf{J}'=0$. This means that
 \begin{equation}
@@ -145,7 +149,11 @@ where an appropriate gauge has been chosen such that $\Div\mathbf{A}=0$. The sol
 \end{equation}
 
 
-Of particular interest are solutions when $\mathbf{J} = \delta(x-x_0)$. We will indicate these solutions by $\phi(x,x_0)$ and $\mathbf{A}(x,x_0)$. It is convenient parameterize the phase function by the center of the delta function, $S=S(x,x_0)$, and to require that $S(x_0,x_0)=0$ so that $\mathbf{J}'(x_0)=\mathbf{J}(x_0)$. With all this, the solution to the general problem is
+Of particular interest are solutions when $\mathbf{J} = \delta(x-x_0)$. 
+We will indicate these solutions by $\phi(x,x_0)$ and $\mathbf{A}(x,x_0)$.
+It is convenient parameterize the phase function by the center of the delta function, $S=S(x,x_0)$,
+and to require that $S(x_0,x_0)=0$ so that $\mathbf{J}'(x_0)=\mathbf{J}(x_0)$.
+With all this, the solution to the general problem is
 \begin{equation}
 	\mathbf{E}(x) = \int_{\mathbb{R}^3} e^{j\omega S(x,x_0)} \left( \mathbf{J}(x_0)\cdot\nabla S(x,x_0) \right)\nabla_x\phi(x,x_0) dx_0
 \end{equation}
@@ -195,13 +203,15 @@ and
 	\mathbf{H}(x) = \int_{\mathbb{R}^3} e^{j\omega\sqrt{\mu\epsilon}\norm{x-x_0}}\frac{\mathbf{J}(x_0)\times(x-x_0)}{4\pi\norm{x-x_0}^3} dx_0.
 \end{equation}
 
-There's a problem though with the $\mathbf{E}$ solution because the vector component is not orthogonal to the gradient of $S$. The simplest fix for this would be to prohibit charges, i.e. $\rho=0$. Maybe we can allow dipole charges.
+There's a problem though with the $\mathbf{E}$ solution because the vector component is not orthogonal to the gradient of $S$.
+The simplest fix for this would be to prohibit charges, i.e. $\rho=0$. Maybe we can allow dipole charges.
 
 
 
 \section{Second Order System}
 
-An alternative to the above solution procedure is to solve the system as far as possible before splitting it by powers of $\omega$. Solving \eqref{eq:max3} for $\mathbf{h}$ and plugging the result into \eqref{eq:max4} gives
+An alternative to the above solution procedure is to solve the system as far as possible before splitting it by powers of $\omega$.
+Solving \eqref{eq:max3} for $\mathbf{h}$ and plugging the result into \eqref{eq:max4} gives
 
 
 
